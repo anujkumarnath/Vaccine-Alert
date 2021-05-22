@@ -1,5 +1,5 @@
-const db                = require('./db');
-const Session           = require('./session');
+const db      = require('./db');
+const Session = require('./session');
 
 let sessionManager = {};
 

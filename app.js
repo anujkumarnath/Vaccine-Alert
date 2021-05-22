@@ -3,7 +3,7 @@
 
 const CronJob	 	= require('cron').CronJob;
 const moment		= require('moment-timezone');
-const envs              = require('./env_config');
+const envs          = require('./env_config');
 const httpsRequest 	= require('./request');
 const sendMessage 	= require('./telegram');
 const sessionManager    = require('./session_manager');
@@ -26,14 +26,14 @@ async function check(pincode, date) {
 		for (let i = 0; i < centers.length; i++) {
 			const center = centers[i];
 			//console.log(center);
-			const name	 = center.name;
+			const name       = center.name;
 			const address 	 = center.address;
 			const block_name = center.block_name;
 			const pincode	 = center.pincode;
 			const sessions   = center.sessions;
 
 			for (let j = 0; j < sessions.length; j++) {
-				const session = sessions[j];
+				const session       = sessions[j];
 				const sessionId     = session.session_id;
 				const vaccine       = session.vaccine;
 				const capacity	    = session.available_capacity;
@@ -102,7 +102,7 @@ function main() {
 		checkWithPincode(788004, envs.GROUPID_SILCHAR);
 		checkWithPincode(788166, envs.GROUPID_788166);
 	}
-};
+}
 
 const app       = new CronJob('*/20 * * * * *', main, null, true, 'Asia/Kolkata');
 const dbCleanup = new CronJob('0 2 * * *', sessionManager.deleteAllSessions, null, true, 'Asia/Kolkata');

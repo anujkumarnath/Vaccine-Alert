@@ -6,6 +6,6 @@ const bot = new TelegramBot(envs.TELEGRAM_BOT_TOKEN, {polling: false});
 
 function sendMessage(groupId, message) {
 	bot.sendMessage(groupId, message);
-};
+}
 
 module.exports = sendMessage;
