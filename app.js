@@ -5,7 +5,6 @@ const CronJob	 	= require('cron').CronJob;
 const moment		= require('moment-timezone');
 const envs              = require('./env_config');
 const httpsRequest 	= require('./request');
-const sendEmail		= require('./email');
 const sendMessage 	= require('./telegram');
 const sessionManager    = require('./session_manager');
 
