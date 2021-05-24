@@ -71,19 +71,19 @@ let checkWithPincode = async (pincode, groupId) => {
 	console.log(pincode, available);
 
 	if (available && available.length > 0 ) {
-		let text = test ? pincode + '\n' : '';
+		let text = '';
 		available.forEach(center => {
 			text += center.date + '\n'
 			+ center.name + '\n'
-			+ center.address + '\n'
-			+ center.vaccine + '\n'
-			+ 'Total: ' + center.capacity + '\n'
+			//+ center.address + '\n'
+			//+ center.vaccine + '\n'
+			//+ 'Total: ' + center.capacity + '\n'
 			+ 'Dose1: ' + center.dose1 + '\n'
 			+ 'Dose2: ' + center.dose2 + '\n'
 			+ '----------------------------------------------\n';
 		});
 
-		sendMessage(groupId, 'The following centers are available: \n----------------------------------------------\n' + text);
+		sendMessage(groupId, `The following centers are available for ${pincode}: \n----------------------------------------------\n` + text);
 	}
 
 };
