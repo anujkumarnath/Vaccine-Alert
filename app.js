@@ -64,10 +64,10 @@ async function check(pincode, date) {
 }
 
 let checkWithPincode = async (pincode, groupId) => {
-	const tomorrow = moment().add(1, 'days').tz('Asia/Kolkata').format('DD-MM-YYYY');
+	const today = moment().tz('Asia/Kolkata').format('DD-MM-YYYY');
 
 	// checks from current date to next 7 days
-	let available = await check(pincode, tomorrow);
+	let available = await check(pincode, today);
 	console.log(pincode, available);
 
 	if (available && available.length > 0 ) {
@@ -104,7 +104,7 @@ function main() {
 	}
 }
 
-const app       = new CronJob('*/20 * * * * *', main, null, true, 'Asia/Kolkata');
+const app       = new CronJob('*/30 * * * * *', main, null, true, 'Asia/Kolkata');
 const dbCleanup = new CronJob('0 2 * * *', sessionManager.deleteAllSessions, null, true, 'Asia/Kolkata');
 
 app.start();
