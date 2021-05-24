@@ -25,7 +25,7 @@ async function check(pincode, date) {
 
 		for (let i = 0; i < centers.length; i++) {
 			const center = centers[i];
-			//console.log(center);
+			console.log(center);
 			const name       = center.name;
 			const address 	 = center.address;
 			const block_name = center.block_name;
@@ -42,18 +42,18 @@ async function check(pincode, date) {
 				const min_age_limit = session.min_age_limit;
 				const date          = session.date;
 
-				// if sessioin already sent to the user skip the session
-				if (await sessionManager.sessionExists({ sessionId, capacity })) continue;
-
 				if (test) {
 					available.push({date, min_age_limit, name, address, block_name, vaccine, capacity, dose1, dose2, pincode});
 
 				} else if (min_age_limit === 18 && capacity > 0) {
-					available.push({date, min_age_limit, name, address, block_name, vaccine, capacity, dose1, dose2, pincode});
-				}
+					// if sessioin already sent to the user skip the session
+					if (await sessionManager.sessionExists({ sessionId, capacity })) continue;
 
-				// save the session in the db to skip in next iteration
-				await sessionManager.addSession({ sessionId, capacity });
+					available.push({date, min_age_limit, name, address, block_name, vaccine, capacity, dose1, dose2, pincode});
+
+					// save the session in the db to skip in next iteration
+					await sessionManager.addSession({ sessionId, capacity });
+				}
 			}
 		}
 
